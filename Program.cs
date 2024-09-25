@@ -6,18 +6,22 @@
 		{
 
 			bool state = true;
-			Beautifier.CoolHeader("", "Welcome to the Binary Cipher! \n");
+
 
 			while (state)
 			{
-
-				string userChoice = Beautifier.CoolMenu("Main Menu", "Encrypt", "Decrypt", "Exit");
+				Beautifier.CoolHeader("", "Welcome to the Binary Cipher! \n");
+				string userChoice = Beautifier.CoolMenu("", "Encrypt", "Decrypt", "Exit");
 				Console.Clear();
-				switch (userChoice)
+
+
+
+				if (userChoice == "Encrypt")
 				{
-					case "Encrypt":
-						Beautifier.CoolHeader("Encrypt", "Please enter the text you would like to encrypt: ");
-						string userInputText = Console.ReadLine();
+					Beautifier.CoolHeader("Encrypt", "Please enter the text you would like to encrypt: ");
+					try
+					{
+						string userInputText = Convert.ToString(Console.ReadLine());
 						List<string> binaryList = Binary.Encrypt(userInputText);
 						Beautifier.CoolHeader("Encrypted Text", "Here is your encrypted text: ");
 						foreach (string s in binaryList)
@@ -26,33 +30,41 @@
 						}
 						Console.ReadKey();
 						Console.Clear();
-						break;
 
-					case "Decrypt":
-						Beautifier.CoolHeader("Decrypt", "Please enter the text you would like to decrypt: ");
-						string userInputText2 = Console.ReadLine();
-						//string decryptedText = Binary.Decrypt(userInputText2);
-						//Beautifier.CoolHeader("Decrypted Text", "Here is your decrypted text: ");
-						//Console.WriteLine(decryptedText);
-						Console.ReadKey();
-						Console.Clear();
-						break;
+					}
+					catch (Exception ex)
+					{
+						Console.WriteLine("An error occurred: " + ex.Message);
+					}
 
-					case "Exit":
-						state = false;
-						Console.ReadKey();
-						Console.Clear();
-						break;
+				}
+				if (userChoice == "Decrypt")
+				{
+					Beautifier.CoolHeader("Decrypt", "Please enter the text you would like to decrypt: ");
+					string userInputText2 = Console.ReadLine();
+					//string decryptedText = Binary.Decrypt(userInputText2);
+					//Beautifier.CoolHeader("Decrypted Text", "Here is your decrypted text: ");
+					//Console.WriteLine(decryptedText);
+					Console.ReadKey();
+					Console.Clear();
 				}
 
+				if (userChoice == "Exit")
+				{
+					state = false;
+					Console.ReadKey();
+					Console.Clear();
+				}
 			}
+
 		}
-
-		//public static string Decrypt(string userInputText)
-		//{
-		//	return text;
-		//}
-
-
 	}
+
+	//public static string Decrypt(string userInputText)
+	//{
+	//	return text;
+	//}
+
+
 }
+
