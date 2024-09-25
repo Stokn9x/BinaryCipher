@@ -4,62 +4,48 @@
 	{
 		static void Main(string[] args)
 		{
-			List<string> binaryList = Encrypt("ALISSA");
 
-			foreach (string s in binaryList)
+			bool state = true;
+			Beautifier.CoolHeader("", "Welcome to the Binary Cipher! \n");
+
+			while (state)
 			{
-				Console.WriteLine(s);
-			}
-		}
 
-		public static List<string> Encrypt(string userInputText)
-		{
-			string[] alphabet = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-			List<string> sortedText = StringSorter(userInputText);
-			List<string> binaryList = new List<string>();
-			bool isUpper = false;
-			for (int i = 0; i < sortedText.Count; i++)
-			{
-				string tempNumber = "";
-				if (sortedText[i].ToString() == sortedText[i].ToString().ToUpper())
+				string userChoice = Beautifier.CoolMenu("Main Menu", "Encrypt", "Decrypt", "Exit");
+				Console.Clear();
+				switch (userChoice)
 				{
-					tempNumber += "010";
-					isUpper = true;
-				}
-				else
-				{
-					tempNumber += "011";
-					isUpper = false;
-				}
-
-				for (int j = 0; j < alphabet.Length; j++)
-				{
-
-					if (sortedText[i].ToString() == alphabet[j])
-					{
-						int temp = j+1;
-						int binValue = 16;
-
-						for (int k = 0; k < 5; k++)
+					case "Encrypt":
+						Beautifier.CoolHeader("Encrypt", "Please enter the text you would like to encrypt: ");
+						string userInputText = Console.ReadLine();
+						List<string> binaryList = Binary.Encrypt(userInputText);
+						Beautifier.CoolHeader("Encrypted Text", "Here is your encrypted text: ");
+						foreach (string s in binaryList)
 						{
-							if(temp >= binValue)
-							{
-								tempNumber += "1";
-							}
-							else
-							{
-								tempNumber += "0";
-							}
-
-							binValue /= 2;
+							Console.WriteLine(s);
 						}
+						Console.ReadKey();
+						Console.Clear();
+						break;
 
-						binaryList.Add(tempNumber);
-					}
+					case "Decrypt":
+						Beautifier.CoolHeader("Decrypt", "Please enter the text you would like to decrypt: ");
+						string userInputText2 = Console.ReadLine();
+						//string decryptedText = Binary.Decrypt(userInputText2);
+						//Beautifier.CoolHeader("Decrypted Text", "Here is your decrypted text: ");
+						//Console.WriteLine(decryptedText);
+						Console.ReadKey();
+						Console.Clear();
+						break;
+
+					case "Exit":
+						state = false;
+						Console.ReadKey();
+						Console.Clear();
+						break;
 				}
-			}
 
-			return binaryList;
+			}
 		}
 
 		//public static string Decrypt(string userInputText)
@@ -67,16 +53,6 @@
 		//	return text;
 		//}
 
-		public static List<string> StringSorter(string text)
-		{
-			List<string> sortedText = new List<string>();
 
-			foreach (char c in text)
-			{
-				sortedText.Add(c.ToString());
-			}
-
-			return sortedText;
-		}
 	}
 }
