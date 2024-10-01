@@ -8,6 +8,7 @@ namespace BinaryCipher
 {
 	public static class Binary
 	{
+		private static string[] alphabet = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
 		public static List<string> StringSorter(string text)
 		{
@@ -21,9 +22,15 @@ namespace BinaryCipher
 			return sortedText;
 		}
 
+		public static List<string> BinarySorter(string text)
+		{
+			List<string> sortedBinary = new List<string>();
+
+			for()
+		}
+
 		public static List<string> Encrypt(string userInputText)
 		{
-			string[] alphabet = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 			List<string> sortedText = StringSorter(userInputText);
 			List<string> binaryList = new List<string>();
 			bool isUpper = false;
@@ -69,6 +76,15 @@ namespace BinaryCipher
 			}
 
 			return binaryList;
+		}
+
+		public static List<string> Decrypt(string userInputText)
+		{
+			List<string> sortedBinary = StringSorter(userInputText);
+			List<string> textList = new List<string>();
+
+
+
 		}
 
 	}
