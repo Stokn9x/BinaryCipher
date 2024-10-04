@@ -19,11 +19,14 @@
 				if (userChoice == "Encrypt")
 				{
 					Beautifier.CoolHeader("Encrypt", "Please enter the text you would like to encrypt: ");
+					Beautifier.CoolLine();
 					try
 					{
 						string userInputTextEncrypt = Convert.ToString(Console.ReadLine());
 						List<string> encryptBinaryList = Binary.Encrypt(userInputTextEncrypt);
+						Console.Clear();
 						Beautifier.CoolHeader("Encrypted Text", "Here is your encrypted text: ");
+						Beautifier.CoolLine();
 						foreach (string s in encryptBinaryList)
 						{
 							Console.WriteLine(s);
@@ -45,10 +48,12 @@
 					{
 						string userInputTextDecrypt = Convert.ToString(Console.ReadLine());
 						List<string> decryptBinaryList = Binary.Decrypt(userInputTextDecrypt);
+						Console.Clear();
 						Beautifier.CoolHeader("Encrypted Text", "Here is your encrypted text: ");
+						Beautifier.CoolLine();
 						foreach (string s in decryptBinaryList)
 						{
-							Console.WriteLine(s);
+							Console.Write(s);
 						}
 						Console.ReadKey();
 						Console.Clear();
